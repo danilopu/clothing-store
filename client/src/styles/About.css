@@ -1,0 +1,30 @@
+.about-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .about-content {
+    margin-bottom: 40px;
+  }
+  
+  .team-section {
+    text-align: center;
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  .team-member {
+    max-width: 200px;
+  }
+  
+  .team-member img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
