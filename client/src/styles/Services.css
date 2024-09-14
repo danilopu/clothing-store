@@ -1,5 +1,5 @@
 .services-page {
-  max-width: 1200px;
+  max-width: 1000px; /* Reduced from 1200px to make sections narrower */
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -7,37 +7,46 @@
 .services-page h1 {
   text-align: center;
   margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: normal;
+  color: #000; /* Changed from blue to black */
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 50px;
 }
 
 .service-item {
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  padding: 20px;
+  border: 1px solid #000;
+  padding: 15px 10px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-width: 200px;
 }
 
 .service-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background-color: #000;
+  color: #fff;
 }
 
 .service-item h2 {
-  margin-bottom: 10px;
-  color: #007bff;
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+/* Specific positioning for the last item */
+.service-item:last-child {
+  grid-column: 2;
 }
 
 .service-item p {
-  color: #333;
+  display: none;
 }
 
 .services-details {
@@ -56,9 +65,9 @@
 
 .service-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changed from center to flex-start for top alignment */
   gap: 30px;
-  max-width: 1000px;
+  max-width: 100%; /* Changed from 1000px to 100% to use full width of parent */
   margin: 0 auto;
 }
 
@@ -71,7 +80,8 @@
 }
 
 .service-image {
-  flex: 1;
+  flex: 1.5; /* Increased from 1.2 to make images wider */
+  max-width: 50%; /* Added to ensure image doesn't exceed half the container width */
 }
 
 .service-image img {
@@ -87,26 +97,50 @@
 
 .service-text h2 {
   margin-bottom: 20px;
-  color: #007bff;
+  color: #000; /* Changed from blue to black */
 }
 
 .service-text p {
   font-size: 16px;
   line-height: 1.6;
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.service-text p.expanded {
+  max-height: 1000px; /* Adjust this value based on your needs */
+}
+
+.service-text button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.service-text button:hover {
+  background-color: #000;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-item:last-child {
+    grid-column: auto;
+  }
+
   .service-content {
     flex-direction: column;
   }
 
   .service-image, .service-text {
     width: 100%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
+    max-width: 100%; /* Allow full width on mobile */
   }
 }

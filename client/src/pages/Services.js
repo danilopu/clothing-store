@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Services.css';
 
 const scrollToSection = (id) => {
@@ -9,6 +9,8 @@ const scrollToSection = (id) => {
 };
 
 function Services() {
+  const [expandedServices, setExpandedServices] = useState({});
+
   const services = [
     {
       id: 'music-production',
@@ -64,17 +66,23 @@ function Services() {
     }
   ];
 
+  const toggleExpand = (id) => {
+    setExpandedServices(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
   return (
     <div className="services-page">
       <h1>Our Services</h1>
       <div className="services-grid">
-        {services.map((service) => (
-          <div key={service.id} className="service-item" onClick={() => scrollToSection(service.id)}>
-            <h2>{service.title}</h2>
-            <p>{service.shortDesc}</p>
-          </div>
-        ))}
-      </div>
+      {services.map((service) => (
+        <div key={service.id} className="service-item" onClick={() => scrollToSection(service.id)}>
+          <h2>{service.title}</h2>
+        </div>
+      ))}
+    </div>
       <div className="services-details">
         {services.map((service, index) => (
           <section id={service.id} key={service.id} className="service-detail">
@@ -84,7 +92,12 @@ function Services() {
               </div>
               <div className="service-text">
                 <h2>{service.title}</h2>
-                <p>{service.longDesc}</p>
+                <p className={expandedServices[service.id] ? 'expanded' : 'collapsed'}>
+                  {service.longDesc}
+                </p>
+                <button onClick={() => toggleExpand(service.id)}>
+                  {expandedServices[service.id] ? 'Less' : 'More'}
+                </button>
               </div>
             </div>
           </section>
