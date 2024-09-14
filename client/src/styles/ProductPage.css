@@ -1,0 +1,118 @@
+.product-page {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .product-images {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .product-images img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-details {
+    flex: 1;
+    padding-left: 40px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 10px;
+  }
+  
+  .product-price {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .product-season {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .color-selection, .size-selection {
+    margin-bottom: 20px;
+  }
+  
+  .color-selection p, .size-selection p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .color-option {
+    display: flex;
+    align-items: center;
+  }
+  
+  .color-swatch {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    margin-right: 10px;
+  }
+  
+  .size-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .size-option {
+    padding: 5px 10px;
+    border: 1px solid #000;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .size-option.selected {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .size-guide {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+  
+  .add-to-bag {
+    width: 100%;
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .find-in-store {
+    display: block;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+  
+  .product-info details {
+    border-top: 1px solid #ddd;
+    padding: 20px 0;
+  }
+  
+  .product-info summary {
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .product-info p {
+    font-size: 14px;
+    margin-top: 10px;
+  }
