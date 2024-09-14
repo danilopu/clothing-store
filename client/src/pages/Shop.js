@@ -7,14 +7,13 @@ import SortModal from '../components/SortModal';
 import { loadProductData } from '../utils/dataLoader';
 import '../styles/Shop.css';
 
-function Shop() {
+function Shop({ cartItems, addToCart }) {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [category, setCategory] = useState('');
   const [sortOption, setSortOption] = useState('');
   const [viewMode, setViewMode] = useState('grid');
   const [favorites, setFavorites] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
@@ -34,14 +33,6 @@ function Shop() {
       setFavorites(favorites.filter(fav => fav.name !== product.name));
     } else {
       setFavorites([...favorites, product]);
-    }
-  };
-
-  const addToCart = (product) => {
-    if (cartItems.find(item => item.name === product.name)) {
-      setCartItems(cartItems.filter(item => item.name !== product.name));
-    } else {
-      setCartItems([...cartItems, product]);
     }
   };
 

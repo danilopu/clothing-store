@@ -35,7 +35,14 @@ function App() {
   }, []);
 
   const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
+    const existingItem = cartItems.find(item => item.name === product.name);
+    if (existingItem) {
+      setCartItems(cartItems.map(item =>
+        item.name === product.name ? { ...item, quantity: item.quantity + 1 } : item
+      ));
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
   };
 
   const removeFromCart = (index) => {
@@ -50,7 +57,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/shop/*" element={<Shop />} />
+          <Route path="/shop/*" element={<Shop cartItems={cartItems} addToCart={addToCart} />} />
 <Route path="/shop/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
           <Route path="/add-product" element={<AddProduct />} />

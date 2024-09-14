@@ -12,7 +12,7 @@ function ProductItem({ product, viewMode, addToFavorites, addToCart, isFavorite,
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    addToCart(product);
+    addToCart({ ...product, quantity: 1 });
   };
 
   const renderActions = () => (

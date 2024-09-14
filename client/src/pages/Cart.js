@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Cart.css';
 
 function Cart({ cartItems, removeFromCart }) {
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <div className="cart-page">
