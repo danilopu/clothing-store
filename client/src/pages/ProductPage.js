@@ -7,6 +7,7 @@ function ProductPage({ products, addToCart }) {
   const navigate = useNavigate();
   const product = products.find(p => p.name === productName);
   const [selectedSize, setSelectedSize] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!product) {
     return <div>Product not found</div>;
@@ -24,9 +25,20 @@ function ProductPage({ products, addToCart }) {
   return (
     <div className="product-page">
       <div className="product-images">
-        {product.images.map((image, index) => (
-          <img key={index} src={image} alt={`${product.name} - View ${index + 1}`} />
-        ))}
+        <div className="image-scroller">
+          {product.images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`${product.name} - View ${index + 1}`}
+              onClick={() => setCurrentImageIndex(index)}
+              className={index === currentImageIndex ? 'active' : ''}
+            />
+          ))}
+        </div>
+        <div className="main-image">
+          <img src={product.images[currentImageIndex]} alt={product.name} />
+        </div>
       </div>
       <div className="product-details">
         <h1>{product.name}</h1>

@@ -6,9 +6,7 @@
   }
   
   .product-images {
-    flex: 1;
     display: flex;
-    flex-direction: column;
     gap: 20px;
   }
   
@@ -115,4 +113,32 @@
   .product-info p {
     font-size: 14px;
     margin-top: 10px;
+  }
+  
+  .image-scroller {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100px;
+  }
+  
+  .image-scroller img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  
+  .image-scroller img.active {
+    border-color: #000;
+  }
+  
+  .main-image {
+    flex: 1;
+  }
+  
+  .main-image img {
+    width: 100%;
+    height: auto;
   }
