@@ -7,22 +7,33 @@ function AddProduct() {
     description: '',
     price: '',
     category: '',
+    size: [],
+    color: [],
     images: []
   });
 
-  const handleFileChange = (e) => {
-    setProduct({ ...product, images: Array.from(e.target.files) });
-  };
   const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setProduct(prevProduct => ({
+      ...prevProduct,
+      [name]: name === 'size' || name === 'color' ? value.split(',') : value
+    }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your product submission logic here
+    // Handle form submission (e.g., send data to backend)
     console.log('Product submitted:', product);
-    // Reset form after submission
-    setProduct({ name: '', description: '', price: '', category: '' });
+    // Reset form
+    setProduct({
+      name: '',
+      description: '',
+      price: '',
+      category: '',
+      size: [],
+      color: [],
+      images: []
+    });
   };
 
   return (
@@ -30,7 +41,7 @@ function AddProduct() {
       <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Product Name</label>
           <input
             type="text"
             id="name"
@@ -41,17 +52,17 @@ function AddProduct() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="description">Description:</label>
+          <label htmlFor="description">Description</label>
           <textarea
             id="description"
             name="description"
             value={product.description}
             onChange={handleChange}
             required
-          />
+          ></textarea>
         </div>
         <div className="form-group">
-          <label htmlFor="price">Price:</label>
+          <label htmlFor="price">Price</label>
           <input
             type="number"
             id="price"
@@ -62,24 +73,47 @@ function AddProduct() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="images">Images:</label>
-          <input
-            type="file"
-            id="images"
-            name="images"
-            onChange={handleFileChange}
-            multiple
-            accept="image/*"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="category">Category:</label>
+          <label htmlFor="category">Category</label>
           <input
             type="text"
             id="category"
             name="category"
             value={product.category}
             onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="size">Sizes (comma-separated)</label>
+          <input
+            type="text"
+            id="size"
+            name="size"
+            value={product.size.join(',')}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="color">Colors (comma-separated)</label>
+          <input
+            type="text"
+            id="color"
+            name="color"
+            value={product.color.join(',')}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="images">Image URLs (comma-separated)</label>
+          <input
+            type="text"
+            id="images"
+            name="images"
+            value={product.images.join(',')}
+            onChange={handleChange}
+            required
           />
         </div>
         <button type="submit">Add Product</button>

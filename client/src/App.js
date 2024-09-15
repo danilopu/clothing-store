@@ -20,6 +20,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HomePage from './pages/HomePage';
 import Services from './pages/Services';
+import Favorites from './pages/Favorites';
+import Account from './pages/Account';
+import './styles/InventoryCategoryModal.css';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -64,20 +67,22 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="app-container">
         <Header cartItemCount={cartItems.length} />
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/shop/*" element={<Shop cartItems={cartItems} addToCart={addToCart} />} />
-          <Route path="/shop/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
-          <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
-          <Route path="/" element={<HomePage addToCart={addToCart} toggleFavorite={toggleFavorite} favorites={favorites} cartItems={cartItems} />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage addToCart={addToCart} toggleFavorite={toggleFavorite} favorites={favorites} cartItems={cartItems} />} />
+            <Route path="/shop" element={<Shop addToCart={addToCart} toggleFavorite={toggleFavorite} favorites={favorites} cartItems={cartItems} />} />
+            <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/add-product" element={<AddProduct />} />
+            <Route path="/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
+            <Route path="/favorites" element={<Favorites favorites={favorites} addToCart={addToCart} toggleFavorite={toggleFavorite} />} />
+            <Route path="/account" element={<Account isAdmin={true} />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>

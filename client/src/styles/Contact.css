@@ -1,42 +1,88 @@
 .contact-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.contact-page h1 {
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.contact-details, .contact-form {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+}
+
+.contact-details h2, .contact-form h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.contact-details p {
+  margin-bottom: 10px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background-color: #000;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #333;
+}
+
+.location-map {
+  width: 100%;
+}
+
+.location-map h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
   .contact-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-  }
-  
-  .contact-details, .contact-form {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  .contact-form form {
-    display: flex;
     flex-direction: column;
   }
-  
-  .contact-form input,
-  .contact-form textarea {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .contact-form button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .location-map {
-    margin-bottom: 40px;
-  }
+}

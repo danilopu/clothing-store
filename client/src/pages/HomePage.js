@@ -109,11 +109,11 @@ const HomePage = ({ addToCart, toggleFavorite, favorites, cartItems }) => {
       <section className="hero">
         <div className="hero-container">
           <div className="hero-item">
-            <img src="/images/faktory_studios_stock.jpg" alt="Services" />
+            <img src="/images/faktory_studios_stock_5.jpg" alt="Services" />
             <Link to="/services" className="hero-button">Services</Link>
           </div>
           <div className="hero-item">
-            <img src="/images/slipon1.jpg" alt="Shop" />
+            <img src="/images/home_shop.jpg" alt="Shop" />
             <Link to="/shop" className="hero-button">Shop</Link>
           </div>
         </div>
@@ -142,11 +142,11 @@ const HomePage = ({ addToCart, toggleFavorite, favorites, cartItems }) => {
     </section> */}
 
     {/* Services Section */}
-    <section className="services">
+    <section className="home-services">
       <h2>Our Services</h2>
-      <div className="services-grid">
+      <div className="home-services-grid">
         {services.map((service) => (
-          <Link key={service.id} to={`/services#${service.id}`} className="service-item">
+          <Link key={service.id} to={`/services#${service.id}`} className="home-service-item">
             <h3>{service.title}</h3>
           </Link>
         ))}

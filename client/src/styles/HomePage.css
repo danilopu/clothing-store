@@ -19,23 +19,27 @@ body {
     width: 100%;
     height: calc(100vh - 80px); /* Adjust based on your header height */
     overflow: hidden;
+    padding: 20px;
   }
   
   .hero-container {
     display: flex;
     height: 100%;
+    gap: 20px;
   }
 
   .hero-item {
     flex: 1;
     position: relative;
     overflow: hidden;
+    aspect-ratio: 16 / 9; /* Adjust this ratio as needed */
   }
 
   .hero-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease;
   }
 
@@ -45,16 +49,15 @@ body {
 
   .hero-button {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #fff;
+    background-color: #fff;    
+    outline: 1px solid #000; 
     color: #000;
-    padding: 15px 30px;
+    padding: 10px 20px;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 1px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
@@ -138,8 +141,8 @@ body {
   }
   /* home page shop section style */
   .shop-preview {
-    margin-top: 80px;
-    padding: 50px 20px;
+    margin-top: 20px;
+    padding: 20px 20px;
     background-color: #fff;
     position: relative;
   }
@@ -295,17 +298,21 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    max-width: 1000px;
+    max-width: 800px; /* Reduced from 1000px */
     margin: 0 auto;
   }
 
   .service-item {
     border: 1px solid #000;
-    padding: 15px 10px;
+    padding: 10px; /* Reduced from 15px */
     text-align: center;
     text-decoration: none;
     color: #000;
     transition: background-color 0.3s ease, color 0.3s ease;
+    height: 40px; /* Reduced from 60px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .service-item:hover {
@@ -315,13 +322,13 @@ body {
 
   .service-item h3 {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px; /* Reduced from 14px */
     font-weight: normal;
     text-transform: uppercase;
   }
 
   /* Specific positioning for the last item */
-  .service-item:last-child {
+  .services-grid .service-item:nth-child(7) {
     grid-column: 2;
   }
 
@@ -330,7 +337,7 @@ body {
       grid-template-columns: 1fr;
     }
 
-    .service-item:last-child {
+    .services-grid .service-item:nth-child(7) {
       grid-column: auto;
     }
   }

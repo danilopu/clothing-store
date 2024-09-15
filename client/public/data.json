@@ -1,104 +1,104 @@
 {
     "products": [
+		{
+            "name": "Bordo dress",
+            "description": "Elegant bordoux dress for cocktail.",
+            "price": 154.99,
+            "category": "Dress",
+            "images": ["bordo_dress.jpg", "bordo_dress_1.jpg", "bordo_dress_2.jpg"],
+            "stock": 5,
+            "size": ["S", "M"],
+            "color": ["Bordoux"]
+        },
+		{
+            "name": "Elegant dress",
+            "description": "Elegant dress for fine dinning.",
+            "price": 254.99,
+            "category": "Dress",
+            "images": ["elegant_dress_with_drink.jpg"],
+            "stock": 45,
+            "size": ["S"],
+            "color": ["Red", "Black"]
+        },
+		{
+            "name": "Purple dress",
+            "description": "Elegant purple dress.",
+            "price": 544.99,
+            "category": "Dress",
+            "images": ["purple_dress.jpg", "purple_dress_1.jpg", "purple_dress_2.jpg"],
+            "stock": 45,
+            "size": ["S", "M", "L", "XL"],
+            "color": ["Purple", "Black"]
+        },
+		{
+            "name": "Long sleeve dress",
+            "description": "Elegant dress with long sleeves. ",
+            "price": 200.99,
+            "category": "Dress",
+            "images": ["dress_long_sleeves.jpg"],
+            "stock": 4,
+            "size": ["S"],
+            "color": ["Black"]
+        },
+		{
+            "name": "Naked shoulder dress",
+            "description": "Elegant dress.",
+            "price": 87.99,
+            "category": "Dress",
+            "images": ["naked_shoulder_dress.jpg"],
+            "stock": 3,
+            "size": ["XS", "S"],
+            "color": ["Blue", "Black"]
+        },
+		{
+            "name": "White dress",
+            "description": "Elegant white dress.",
+            "price": 87.99,
+            "category": "Dress",
+            "images": ["white_dress.jpg", "white_dress_v2.jpg"],
+            "stock": 3,
+            "size": ["XS", "S"],
+            "color": ["Blue", "Black"]
+        },
+		{
+            "name": "Red dress",
+            "description": "Elegant red dress.",
+            "price": 89.99,
+            "category": "Dress",
+            "images": ["red_dress.jpg", "red_dress_1.jpg", "red_dress_2.jpg"],
+            "stock": 45,
+            "size": ["S", "M", "L", "XL"],
+            "color": ["Red", "Black"]
+        },
         {
-            "name": "Bomber Jacket",
+            "name": "Old Hollywood Dress",
             "description": "Trendy bomber jacket with a relaxed fit.",
-            "price": 54.99,
-            "category": "Jackets",
-            "images": ["bomber1.jpg", "bomber2.jpg"],
+            "price": 654.99,
+            "category": "Dress",
+            "images": ["old_hollywood_dress.jpg"],
             "stock": 45,
             "size": ["S", "M", "L", "XL"],
             "color": ["Olive", "Black"]
         },
         {
-            "name": "Slip-On Sneakers",
-            "description": "Comfortable slip-on sneakers for easy wear.",
-            "price": 39.99,
-            "category": "Footwear",
-            "images": ["slipon1.jpg", "slipon2.jpg"],
-            "stock": 65,
-            "size": ["7", "8", "9", "10", "11"],
-            "color": ["Black", "Gray"]
+            "name": "Dark Green Dress",
+            "description": "Trendy bomber jacket with a relaxed fit.",
+            "price": 54.99,
+            "category": "Dress",
+            "images": ["dark_green_dress.jpg"],
+            "stock": 45,
+            "size": ["S", "M", "L", "XL"],
+            "color": ["Olive", "Black"]
         },
         {
-            "name": "Puffer Jacket",
-            "description": "Warm puffer jacket with a water-resistant finish.",
-            "price": 69.99,
+            "name": "Women coat",
+            "description": "Trendy bomber jacket with a relaxed fit.",
+            "price": 54.99,
             "category": "Jackets",
-            "images": ["puffer1.jpg", "puffer2.jpg"],
-            "stock": 55,
+            "images": ["women_coat.jpg", "women_coat_1.jpg","women_coat_2.jpg"],
+            "stock": 45,
             "size": ["S", "M", "L", "XL"],
-            "color": ["Navy", "Black"]
-        },
-        {
-            "name": "Henley Shirt",
-            "description": "Classic Henley shirt with long sleeves.",
-            "price": 22.99,
-            "category": "Shirts",
-            "images": ["henley1.jpg", "henley2.jpg"],
-            "stock": 100,
-            "size": ["S", "M", "L", "XL"],
-            "color": ["White", "Gray", "Black"]
-        },
-        {
-            "name": "Running Shoes",
-            "description": "Lightweight running shoes for athletic performance.",
-            "price": 59.99,
-            "category": "Footwear",
-            "images": ["runningshoes1.jpg", "runningshoes2.jpg"],
-            "stock": 75,
-            "size": ["7", "8", "9", "10", "11", "12"],
-            "color": ["Gray", "Blue"]
-        },
-        {
-            "name": "Rain Jacket",
-            "description": "Waterproof rain jacket with a hood.",
-            "price": 64.99,
-            "category": "Jackets",
-            "images": ["rainjacket1.jpg", "rainjacket2.jpg"],
-            "stock": 60,
-            "size": ["S", "M", "L", "XL"],
-            "color": ["Yellow", "Navy"]
-        },
-        {
-            "name": "Track Pants",
-            "description": "Lightweight track pants with elastic waist.",
-            "price": 29.99,
-            "category": "Pants",
-            "images": ["trackpants1.jpg", "trackpants2.jpg"],
-            "stock": 85,
-            "size": ["S", "M", "L", "XL"],
-            "color": ["Black", "Gray"]
-        },
-        {
-            "name": "Leather Boots",
-            "description": "Durable leather boots for rugged wear.",
-            "price": 89.99,
-            "category": "Footwear",
-            "images": ["boots1.jpg", "boots2.jpg"],
-            "stock": 40,
-            "size": ["8", "9", "10", "11", "12"],
-            "color": ["Brown", "Black"]
-        },
-        {
-            "name": "Down Vest",
-            "description": "Lightweight down vest for layering.",
-            "price": 49.99,
-            "category": "Jackets",
-            "images": ["vest1.jpg", "vest2.jpg"],
-            "stock": 50,
-            "size": ["S", "M", "L", "XL"],
-            "color": ["Black", "Gray"]
-        },
-        {
-            "name": "Plaid Shirt",
-            "description": "Classic plaid shirt with a modern fit.",
-            "price": 34.99,
-            "category": "Shirts",
-            "images": ["plaidshirt1.jpg", "plaidshirt2.jpg"],
-            "stock": 75,
-            "size": ["S", "M", "L", "XL"],
-            "color": ["Red Plaid", "Blue Plaid"]
+            "color": ["Olive", "Black"]
         }
     ]
 }
