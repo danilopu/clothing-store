@@ -1,0 +1,43 @@
+.photo-collage {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.collage-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.grid-3x3 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.grid-5 {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.grid-5 .collage-item:first-child {
+  grid-row: 1 / -1;
+  grid-column: 1;
+}
+
+.collage-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.collage-item:hover img {
+  transform: scale(1.05);
+}

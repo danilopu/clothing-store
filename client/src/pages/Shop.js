@@ -6,6 +6,7 @@ import CategoryModal from '../components/CategoryModal';
 import SortModal from '../components/SortModal';
 import { loadProductData } from '../utils/dataLoader';
 import '../styles/Shop.css';
+import PhotoCollage from '../components/PhotoCollage';
 
 function Shop({ cartItems, addToCart }) {
   const [products, setProducts] = useState([]);
@@ -100,14 +101,18 @@ function Shop({ cartItems, addToCart }) {
         onSortClick={handleSortClick}
         onViewChange={handleViewChange}
       />
-      <ProductList 
-        products={filteredProducts} 
-        viewMode={viewMode}
-        addToFavorites={addToFavorites}
-        addToCart={addToCart}
-        favorites={favorites}
-        cartItems={cartItems}
-      />
+      {viewMode === 'collage' ? (
+        <PhotoCollage products={filteredProducts} />
+      ) : (
+        <ProductList 
+          products={filteredProducts} 
+          viewMode={viewMode}
+          addToFavorites={addToFavorites}
+          addToCart={addToCart}
+          favorites={favorites}
+          cartItems={cartItems}
+        />
+      )}
       {isFilterModalOpen && (
         <FilterModal 
           onClose={() => setIsFilterModalOpen(false)}

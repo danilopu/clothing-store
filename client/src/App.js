@@ -35,19 +35,31 @@ function App() {
   }, []);
 
   const addToCart = (product) => {
-    const existingItem = cartItems.find(item => item.name === product.name);
-    if (existingItem) {
-      setCartItems(cartItems.map(item =>
-        item.name === product.name ? { ...item, quantity: item.quantity + 1 } : item
-      ));
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.name === product.name);
+      if (existingItem) {
+        return prevItems.filter(item => item.name !== product.name);
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
   };
 
   const removeFromCart = (index) => {
     const newCartItems = cartItems.filter((_, i) => i !== index);
     setCartItems(newCartItems);
+  };
+
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = (product) => {
+    setFavorites(prevFavorites => {
+      if (prevFavorites.includes(product.name)) {
+        return prevFavorites.filter(name => name !== product.name);
+      } else {
+        return [...prevFavorites, product.name];
+      }
+    });
   };
 
   return (
@@ -58,13 +70,13 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/shop/*" element={<Shop cartItems={cartItems} addToCart={addToCart} />} />
-<Route path="/shop/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
+          <Route path="/shop/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/product/:productName" element={<ProductPage products={products} addToCart={addToCart} />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage addToCart={addToCart} toggleFavorite={toggleFavorite} favorites={favorites} cartItems={cartItems} />} />
           <Route path="/contact" element={<Contact />} />
-<Route path="/about" element={<About />} />
+          <Route path="/about" element={<About />} />
         </Routes>
         <Footer />
       </div>

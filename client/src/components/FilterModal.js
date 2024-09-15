@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FiX } from 'react-icons/fi';
 import '../styles/Modal.css';
 
 function FilterModal({ onClose, onApplyFilters, initialFilters }) {
@@ -14,12 +13,9 @@ function FilterModal({ onClose, onApplyFilters, initialFilters }) {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          <FiX />
-        </button>
-        <h2>Filter Products</h2>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h2 className="modal-title">Filter Products</h2>
         <div className="modal-section">
           <h3>Price Range</h3>
           <div className="price-range">

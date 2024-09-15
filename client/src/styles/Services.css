@@ -1,5 +1,5 @@
 .services-page {
-  max-width: 1000px; /* Reduced from 1200px to make sections narrower */
+  max-width: 1200px; /* Increased to allow for wider sections */
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -67,7 +67,8 @@
   display: flex;
   align-items: flex-start; /* Changed from center to flex-start for top alignment */
   gap: 30px;
-  max-width: 100%; /* Changed from 1000px to 100% to use full width of parent */
+  height: 300px; /* Fixed height for all sections */
+  width: 100%; /* Use full width of the container */
   margin: 0 auto;
 }
 
@@ -80,41 +81,70 @@
 }
 
 .service-image {
-  flex: 1.5; /* Increased from 1.2 to make images wider */
-  max-width: 50%; /* Added to ensure image doesn't exceed half the container width */
+  flex: 1;
+  height: 100%;
+  max-width: 50%;
 }
 
 .service-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .service-text {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .service-text h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #000; /* Changed from blue to black */
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 2px solid #000;
+  padding-bottom: 5px;
 }
 
 .service-text p {
-  font-size: 16px;
-  line-height: 1.6;
-  max-height: 100px;
+  font-size: 14px; /* Reduced from 16px */
+  line-height: 1.5;
+  max-height: 120px; /* Show about 5-6 lines of text */
+  flex-grow: 1;
   overflow: hidden;
+  position: relative;
   transition: max-height 0.3s ease;
 }
 
 .service-text p.expanded {
-  max-height: 1000px; /* Adjust this value based on your needs */
+  max-height: none;
+}
+
+.service-text p.collapsed {
+  max-height: 150px; /* Reduced from 200px */
+}
+
+.service-text p.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(transparent, white);
+  pointer-events: none;
 }
 
 .service-text button {
-  margin-top: 20px;
-  padding: 10px 20px;
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 5px 15px;
   background-color: transparent;
   border: 1px solid #000;
   cursor: pointer;
@@ -137,10 +167,14 @@
 
   .service-content {
     flex-direction: column;
+    height: auto;
   }
 
   .service-image, .service-text {
-    width: 100%;
     max-width: 100%; /* Allow full width on mobile */
+  }
+
+  .service-image {
+    height: 200px; /* Reduced from 300px for mobile */
   }
 }

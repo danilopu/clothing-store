@@ -1,8 +1,7 @@
 import React from 'react';
-import { FiX } from 'react-icons/fi';
 import '../styles/Modal.css';
 
-function SortModal({ onClose, sortOption, onSortChange }) {
+function SortModal({ sortOption, onSortChange, onClose }) {
   const sortOptions = [
     { value: 'price-asc', label: 'Price: Low to High' },
     { value: 'price-desc', label: 'Price: High to Low' },
@@ -11,12 +10,9 @@ function SortModal({ onClose, sortOption, onSortChange }) {
   ];
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          <FiX />
-        </button>
-        <h2>Sort Products</h2>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h2 className="modal-title">Sort Products</h2>
         <div className="modal-options">
           {sortOptions.map((option) => (
             <button

@@ -1,34 +1,51 @@
-// HomePage.jsx
-
-import Slider from "react-slick";
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiHeart, FiShoppingCart } from 'react-icons/fi';
 import "../styles/HomePage.css"
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { loadProductData } from '../utils/dataLoader';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const CustomPrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} custom-arrow custom-prev-arrow`}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      />
-    );
-  };
-  
-  const CustomNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} custom-arrow custom-next-arrow`}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      />
-    );
-  };
+  const { className, onClick } = props;
+  return (
+    <div
+      className={`${className} custom-arrow custom-prev-arrow`}
+      onClick={onClick}
+    />
+  );
+};
 
-const HomePage = () => {
+const CustomNextArrow = (props) => {
+  const { className, onClick } = props;
+  return (
+    <div
+      className={`${className} custom-arrow custom-next-arrow`}
+      onClick={onClick}
+    />
+  );
+};
+
+const services = [
+  { id: 'cmt', title: 'CMT' },
+  { id: 'fps', title: 'FPS' },
+  { id: 'pattern-making', title: 'PATTERN MAKING AND GRADING' },
+  { id: 'fabric-sourcing', title: 'FABRIC AND TRIM SOURCING' },
+  { id: 'apparel-development', title: 'APPAREL DEVELOPMENT' },
+  { id: 'photography', title: 'PHOTOGRAPHY' },
+  { id: 'shipping', title: 'SHIPPING' }
+];
+
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
+const HomePage = ({ addToCart, toggleFavorite, favorites, cartItems }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -40,16 +57,19 @@ const HomePage = () => {
       fetchProducts();
     }, []);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    arrows: false,
-  };
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 5000, // Increased to 5 seconds for better visibility
+      arrows: true, // Changed to true to add navigation arrows
+      fade: true, // Add fade effect for smoother transition
+      beforeChange: (current, next) => console.log(`Changing from slide ${current} to ${next}`),
+      afterChange: current => console.log(`Changed to slide ${current}`),
+    };
 
   const shopSettings = {
     dots: true,
@@ -87,48 +107,24 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <section className="hero">
-        <Slider {...settings}>
-          <div className="hero-slide">
-            <div className="hero-image" style={{backgroundImage: 'url("/images/faktory_studios_stock_carousel.jpg")'}}></div>
-            <div className="hero-content">
-              <h1>Faktory Studios</h1>
-              <p>Creative and dynamic production services in a cutting-edge environment</p>
-              <a href="/services" className="cta-button">
-                Explore Our Services
-              </a>
-            </div>
+        <div className="hero-container">
+          <div className="hero-item">
+            <img src="/images/faktory_studios_stock.jpg" alt="Services" />
+            <Link to="/services" className="hero-button">Services</Link>
           </div>
-          <div className="hero-slide">
-            <div className="hero-image" style={{backgroundImage: 'url("/images/faktory_studios_stock.jpg")'}}></div>
-            <div className="hero-content">
-              <h1>Our Shop</h1>
-              <p>Check out the latest gear, music equipment, and accessories</p>
-              <a href="/shop" className="cta-button">
-                Visit the Shop
-              </a>
-            </div>
+          <div className="hero-item">
+            <img src="/images/slipon1.jpg" alt="Shop" />
+            <Link to="/shop" className="hero-button">Shop</Link>
           </div>
-          <div className="hero-slide">
-            <div className="hero-image" style={{backgroundImage: 'url("/images/faktory_studios_stock_carousel_1.jpg")'}}></div>
-            <div className="hero-content">
-              <h1>Studio Space</h1>
-              <p>Rent our fully equipped studio for your next recording session</p>
-              <a href="/studio" className="cta-button">
-                Book Studio Space
-              </a>
-            </div>
-          </div>
-        </Slider>
+        </div>
       </section>
 
       {/* About Section */}
       <section className="about">
-        <div className="about-content">
-          <h2>About Us</h2>
-          <p>
-          FAKTORY STUDIOS IS THE ONE-STOP ENTERPRISE WHERE ONE CAN DISCOVER THAT THE PRODUCTION PROCESS WAS NEVER AS ENJOYABLE AS IT IS NOW - THE DESIGN, SOURCING, MANUFACTURING AND SHIPPING AS FOUR PHASES WE TAKE CARE OF THE FULL PROCESS, LETTING THE CLIENT FOCUS ON OTHER PARTS OF A FASHION BUSINESS. WITH THE LOWEST MINIMUM QUANTITIES, ONE CAN FIND ON THE MARKET, WE OFFER OUR CLIENTS AN ABILITY TO REACT QUICKLY ON THE MARKET NEEDS OR TRYING NEW PRODUCT STYLES, WITHOUT RISKING ENDING UP WITH TOO MUCH LEFT-OVER STOCK.
-          </p>
-        </div>
+        <h2 style={{ textAlign: 'center' }}>About Us</h2>
+        <p>
+          We are a creative studio dedicated to bringing your ideas to life. Our team of experts specializes in music production, video creation, and innovative merchandise.
+        </p>
       </section>
 
     {/* What we stand for section */}
@@ -147,47 +143,58 @@ const HomePage = () => {
 
     {/* Services Section */}
     <section className="services">
-    <h2>Our Services</h2>
-    <div className="service-cards">
-        <Link to="/services#music-production" className="card">
-        <h3>CMT</h3>
-        <p>Cut, make and trim.</p>
-        </Link>
-        <Link to="/services#studio-rental" className="card">
-        <h3>FPS</h3>
-        <p>Full package solution.</p>
-        </Link>
-        <Link to="/services#media-creation" className="card">
-        <h3>Pattern making and grading</h3>
-        <p>Custom pattern making and grading..</p>
-        </Link>
-        <Link to="/services#equipment-rental" className="card">
-        <h3>Fabric and trim sourcing</h3>
-        <p>Fabric and trim sourcing.</p>
-        </Link>
-    </div>
+      <h2>Our Services</h2>
+      <div className="services-grid">
+        {services.map((service) => (
+          <Link key={service.id} to={`/services#${service.id}`} className="service-item">
+            <h3>{service.title}</h3>
+          </Link>
+        ))}
+      </div>
     </section>
+
     {/* Shop Section */}
     <section className="shop-preview">
     <h2>Featured Products</h2>
     <Slider {...shopSettings}>
-        {products.slice(0, 8).map((product) => (
+      {products.slice(0, 8).map((product) => (
         <div key={product.name} className="product-card">
-            <Link to={`/shop/product/${product.name}`}>
+          <Link to={`/shop/product/${product.name}`}>
             <img src={product.images[0]} alt={product.name} />
             <h3>{product.name}</h3>
             <p>${product.price.toFixed(2)}</p>
-            </Link>
+          </Link>
+          <div className="product-actions">
+            <button 
+              className={`action-button ${favorites.includes(product.name) ? 'active' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                toggleFavorite(product);
+              }}
+            >
+              <FiHeart fill={favorites.includes(product.name) ? 'black' : 'none'} />
+            </button>
+            <button 
+              className={`action-button ${cartItems.some(item => item.name === product.name) ? 'active' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                addToCart(product);
+              }}
+            >
+              <FiShoppingCart fill={cartItems.some(item => item.name === product.name) ? 'black' : 'none'} />
+            </button>
+          </div>
         </div>
-        ))}
+      ))}
     </Slider>
-    </section>
+  </section>
 
       {/* Contact Section */}
-      <section className="contact">
+      <section className="get-in-touch">
         <h2>Get in Touch</h2>
         <p>
-          Ready to bring your project to life? <a href="/contact">Contact us</a> today!
+          Ready to bring your project to life? <Link to="/contact">Contact us</Link> today!
         </p>
       </section>
     </div>

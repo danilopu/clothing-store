@@ -1,15 +1,11 @@
 import React from 'react';
-import { FiX } from 'react-icons/fi';
 import '../styles/Modal.css';
 
-function CategoryModal({ onClose, categories, selectedCategory, onCategoryChange }) {
+function CategoryModal({ categories, selectedCategory, onCategoryChange, onClose }) {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          <FiX />
-        </button>
-        <h2>Select Category</h2>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <h2 className="modal-title">Select Category</h2>
         <div className="modal-options">
           <button
             className={`modal-option ${selectedCategory === '' ? 'active' : ''}`}

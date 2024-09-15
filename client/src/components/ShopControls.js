@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiFilter, FiList, FiGrid } from 'react-icons/fi';
 import { BiSort } from 'react-icons/bi';
-import { BsTagsFill } from 'react-icons/bs';
+import { BsTagsFill, BsImages } from 'react-icons/bs';
 import '../styles/ShopControls.css';
 
 function ShopControls({ viewMode, onFilterClick, onCategoryClick, onSortClick, onViewChange }) {
@@ -18,9 +18,9 @@ function ShopControls({ viewMode, onFilterClick, onCategoryClick, onSortClick, o
       </button>
       <button 
         className="control-button"
-        onClick={() => onViewChange(viewMode === 'grid' ? 'list' : 'grid')}
+        onClick={() => onViewChange(viewMode === 'grid' ? 'list' : (viewMode === 'list' ? 'collage' : 'grid'))}
       >
-        {viewMode === 'grid' ? <FiList /> : <FiGrid />}
+        {viewMode === 'grid' ? <FiList /> : (viewMode === 'list' ? <BsImages /> : <FiGrid />)}
       </button>
     </div>
   );
