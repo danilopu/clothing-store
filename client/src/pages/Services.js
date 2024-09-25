@@ -118,31 +118,31 @@ function Services() {
   const services = [
     {
       id: 'recording',
-      title: 'Recording Services',
-      shortDesc: 'State-of-the-art recording facilities for all your audio needs.',
-      longDesc: 'Our recording services offer top-notch equipment and experienced engineers to capture your sound perfectly. Whether youre recording a full band, a solo artist, or voice-over work, we have the tools and expertise to deliver exceptional results.',
-      image: '/images/recording-studio.jpg'
+      title: 'CMT',
+      shortDesc: 'Cut, make and trim.',
+      longDesc: 'EITHER YOU CAN TRANSPORT THE FABRICS TO OUR FACILITY OR WE CAN DO IT FOR YOU. UPON RECEIVING THE TECH PACK, WE FIRST CREATE THE SAMPLE, SHIP IT BACK, EMAIL THE PRECISE PRICING AND START THE PRODUCTION PROCESS IF EVERYTHING SETTLED. WE CAN START THE PRODUCTION USING YOUR PATTERNS OR CREATE THE PATTERN CONSTRUCTION FOR YOU.',
+      image: '/images/faktory_studios_stock_1.jpg'
     },
     {
       id: 'production',
-      title: 'Music Production',
-      shortDesc: 'Full-service music production to bring your vision to life.',
-      longDesc: 'Our music production services cover everything from pre-production planning to final mastering. Our team of experienced producers will work closely with you to develop your sound, arrange your music, and create a polished final product.',
-      image: '/images/music-production.jpg'
+      title: 'FPS',
+      shortDesc: 'Full package solution.',
+      longDesc: 'FPP INCLUDES EVERYTHING FROM THE CMT SELECTION, ALONG WITH THE FABRIC AND TRIM SOURCING, ADDITIONAL PATTERN MAKING AND DESIGN SERVICES.',
+      image: '/images/faktory_studios_stock_2.jpg'
     },
     {
       id: 'mixing',
-      title: 'Mixing & Mastering',
-      shortDesc: 'Professional mixing and mastering to perfect your sound.',
-      longDesc: 'Our mixing and mastering services will give your tracks the professional polish they need. Using top-of-the-line equipment and software, our engineers will balance your mix, enhance the sound, and ensure your music translates well across all playback systems.',
-      image: '/images/mixing-mastering.jpg'
+      title: 'Pattern making and grading',
+      shortDesc: 'Production and design of custom patterns.',
+      longDesc: 'AT OUR FACILITY IN SERBIA, WE ARE ABLE TO WORK FROM EITHER A PROTOTYPE OR AN ILLUSTRATION TO CRAFT HAND-DRAWN PRODUCTION- READY PATTERNS. ALL WE NEED IS THE DESIGNER’S IDEA & WE WILL TRANSLATE IT TO A PATTERN. TECH PACK AND SPEC SHEETS ARE REQUIRED TO START PRODUCTION WITH US. HOWEVER, IF THE BRAND DOES NOT HAVE ONE OUR TEAM WILL CREATE THE TECHNICAL DRAWING, TECH PACK AND SPEC SHEET AT AN ADDITIONAL FEE. WHEN REACHING THE FINAL STEP OF THE PATTERN DEVELOPMENT PROCEDURE, WE TRANSLATE THE APPROVED PATTERN IN YOUR DESIRED SIZE RANGE ACCORDING TO YOUR TARGET MARKET.',
+      image: '/images//faktory_studios_stock_3.jpg'
     },
     {
       id: 'rental',
-      title: 'Equipment Rental',
-      shortDesc: 'High-quality audio equipment available for rent.',
-      longDesc: 'Need specific gear for your project? Our equipment rental service offers a wide range of professional audio equipment, from microphones and preamps to instruments and amplifiers. We ensure all our rental equipment is well-maintained and ready for your production needs.',
-      image: '/images/equipment-rental.jpg'
+      title: 'Fabric and trim sourcing',
+      shortDesc: 'Fabric and trim sourcing.',
+      longDesc: 'UPON RECEIVING YOUR TECH-PACK OR CREATING ONE FOR YOU, WE WILL SUGGEST THE MOST APPROPRIATE FABRIC & TRIM CHOICES THAT COMPLEMENT YOUR DESIGN BEST. AFTER SETTLING UPON CHOICES, WE ORDER THE EXACT QUANTITY NEEDED AND START THE MANUFACTURING PROCESS AS SOON THE FABRICS & TRIMS ARRIVE. ALL FABRICS CAN BE IMPORTED TO THE FAKTORY WITH THE EUR1 PROOF. THE ONLY CHARGES APPLY WHEN WE HANDLE THE IMPORT OF THE FABRICS FOR BRANDS. WE ALSO SOURCE CARE AND BRAND LABELS, TOGETHER WITH HANG LABELS. OUR MAIN FABRIC SUPPLIERS ARE SOURCED FROM SERBIA, ITALY AND FRANCE. FAKTORY TISSUS IS THE OFFICIAL DISTRIBUTOR OF THE ITALIAN CAFISSI SPA THE FRENCH DEVEAUX SAS FABRIC MANUFACTURERS. AFTER THE DESIGN CONSULTANCY, OUR TEAM PROVIDES THE MOST SUITABLE FABRIC CHOICE FOR THE DESIGNS PRESENTED. AS THE OFFICIAL DISTRIBUTORS, THE PRODUCTIONS WE WORK WITH OFFER MANY CUSTOMIZATION SERVICES FOR OUR CLIENTS, CHOOSING THE EXISTING QUALITY AS A BASE AND ADAPTING THE PRINT TO THE BRAND’S DESIGN.',
+      image: '/images/faktory_studios_stock_4.jpg'
     }
   ];
 
