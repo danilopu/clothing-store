@@ -7,6 +7,7 @@ import SortModal from '../components/SortModal';
 import { loadProductData } from '../utils/dataLoader';
 import '../styles/Shop.css';
 import PhotoCollage from '../components/PhotoCollage';
+import LoadingOverlay from '../components/LoadingOverlay'; // New import
 
 function Shop({ cartItems, addToCart }) {
   const [products, setProducts] = useState([]);
@@ -19,12 +20,15 @@ function Shop({ cartItems, addToCart }) {
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const [filters, setFilters] = useState({ priceRange: [0, 1000], brands: [] });
+  const [isLoading, setIsLoading] = useState(true); // New loading state
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true); // Set loading to true before fetching
       const productsData = await loadProductData();
       setProducts(productsData);
       setFilteredProducts(productsData);
+      setIsLoading(false); // Set loading to false after fetching
     };
     fetchProducts();
   }, []);
@@ -94,46 +98,52 @@ function Shop({ cartItems, addToCart }) {
 
   return (
     <div className="shop">
-      <ShopControls
-        viewMode={viewMode}
-        onFilterClick={handleFilterClick}
-        onCategoryClick={handleCategoryClick}
-        onSortClick={handleSortClick}
-        onViewChange={handleViewChange}
-      />
-      {viewMode === 'collage' ? (
-        <PhotoCollage products={filteredProducts} />
+      {isLoading ? (
+        <LoadingOverlay />
       ) : (
-        <ProductList 
-          products={filteredProducts} 
-          viewMode={viewMode}
-          addToFavorites={addToFavorites}
-          addToCart={addToCart}
-          favorites={favorites}
-          cartItems={cartItems}
-        />
-      )}
-      {isFilterModalOpen && (
-        <FilterModal 
-          onClose={() => setIsFilterModalOpen(false)}
-          onApplyFilters={handleApplyFilters}
-          initialFilters={filters}
-        />
-      )}
-      {isCategoryModalOpen && (
-        <CategoryModal 
-          onClose={() => setIsCategoryModalOpen(false)}
-          categories={['Shirts', 'Pants', 'Shoes', 'Accessories']}
-          selectedCategory={category}
-          onCategoryChange={handleCategoryChange}
-        />
-      )}
-      {isSortModalOpen && (
-        <SortModal 
-          onClose={() => setIsSortModalOpen(false)}
-          sortOption={sortOption}
-          onSortChange={handleSortChange}
-        />
+        <>
+          <ShopControls
+            viewMode={viewMode}
+            onFilterClick={handleFilterClick}
+            onCategoryClick={handleCategoryClick}
+            onSortClick={handleSortClick}
+            onViewChange={handleViewChange}
+          />
+          {viewMode === 'collage' ? (
+            <PhotoCollage products={filteredProducts} />
+          ) : (
+            <ProductList 
+              products={filteredProducts} 
+              viewMode={viewMode}
+              addToFavorites={addToFavorites}
+              addToCart={addToCart}
+              favorites={favorites}
+              cartItems={cartItems}
+            />
+          )}
+          {isFilterModalOpen && (
+            <FilterModal 
+              onClose={() => setIsFilterModalOpen(false)}
+              onApplyFilters={handleApplyFilters}
+              initialFilters={filters}
+            />
+          )}
+          {isCategoryModalOpen && (
+            <CategoryModal 
+              onClose={() => setIsCategoryModalOpen(false)}
+              categories={['Shirts', 'Pants', 'Shoes', 'Accessories']}
+              selectedCategory={category}
+              onCategoryChange={handleCategoryChange}
+            />
+          )}
+          {isSortModalOpen && (
+            <SortModal 
+              onClose={() => setIsSortModalOpen(false)}
+              sortOption={sortOption}
+              onSortChange={handleSortChange}
+            />
+          )}
+        </>
       )}
     </div>
   );

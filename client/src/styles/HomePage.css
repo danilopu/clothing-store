@@ -81,7 +81,7 @@ body {
   
   /* Adjust the dots position */
   .slick-dots {
-    bottom: -30px;
+    bottom: -15px;
   }
   
   .slick-dots li button:before {
