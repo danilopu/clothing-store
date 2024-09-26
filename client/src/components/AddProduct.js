@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../styles/AddProduct.css';
 
 function AddProduct() {
@@ -9,8 +10,8 @@ function AddProduct() {
     category: '',
     size: [],
     color: [],
-    images: []
   });
+  const [images, setImages] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,20 +21,44 @@ function AddProduct() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleImageChange = (e) => {
+    setImages(Array.from(e.target.files));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., send data to backend)
-    console.log('Product submitted:', product);
-    // Reset form
-    setProduct({
-      name: '',
-      description: '',
-      price: '',
-      category: '',
-      size: [],
-      color: [],
-      images: []
+    const formData = new FormData();
+    Object.keys(product).forEach(key => {
+      if (key === 'size' || key === 'color') {
+        formData.append(key, product[key].join(','));
+      } else {
+        formData.append(key, product[key]);
+      }
     });
+    images.forEach((image, index) => {
+      formData.append(`images`, image);
+    });
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/products', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log('Product added:', response.data);
+      // Reset form
+      setProduct({
+        name: '',
+        description: '',
+        price: '',
+        category: '',
+        size: [],
+        color: [],
+      });
+      setImages([]);
+    } catch (error) {
+      console.error('Error adding product:', error);
+    }
   };
 
   return (
@@ -89,7 +114,7 @@ function AddProduct() {
             type="text"
             id="size"
             name="size"
-            value={product.size.join(',')}
+            value={Array.isArray(product.size) ? product.size.join(',') : product.size}
             onChange={handleChange}
             required
           />
@@ -100,19 +125,19 @@ function AddProduct() {
             type="text"
             id="color"
             name="color"
-            value={product.color.join(',')}
+            value={Array.isArray(product.color) ? product.color.join(',') : product.color}
             onChange={handleChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="images">Image URLs (comma-separated)</label>
+          <label htmlFor="images">Product Images</label>
           <input
-            type="text"
+            type="file"
             id="images"
             name="images"
-            value={product.images.join(',')}
-            onChange={handleChange}
+            onChange={handleImageChange}
+            multiple
             required
           />
         </div>
