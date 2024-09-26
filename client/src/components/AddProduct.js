@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/AddProduct.css';
 
-function AddProduct() {
+function AddProduct({ onProductAdded }) {  // Add this prop
   const [product, setProduct] = useState({
     name: '',
     description: '',
@@ -40,6 +40,7 @@ function AddProduct() {
     });
 
     try {
+      console.log('Submitting product data:', formData);
       const response = await axios.post('http://localhost:5000/api/products', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -56,6 +57,10 @@ function AddProduct() {
         color: [],
       });
       setImages([]);
+      // Call the onProductAdded prop to refresh the product list
+      if (onProductAdded) {
+        onProductAdded();
+      }
     } catch (error) {
       console.error('Error adding product:', error);
     }

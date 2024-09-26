@@ -1,68 +1,82 @@
 import React, { useState } from 'react';
-import InventoryCategoryModal from './InventoryCategory';
+import '../styles/InventoryOverview.css';
 
-function InventoryOverview({ inventory, filter, setFilter }) {
-  const [categories, setCategories] = useState(['all', 'tops', 'bottoms', 'footwear']);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+function InventoryOverview({ inventory, filter, setFilter, onRemoveProduct }) {
+  const [sortBy, setSortBy] = useState('name');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const filteredInventory = filter === 'all' 
     ? inventory 
     : inventory.filter(item => item.category.toLowerCase() === filter);
 
-  const handleAddCategory = (newCategory) => {
-    setCategories([...categories, newCategory]);
+  const sortedInventory = [...filteredInventory].sort((a, b) => {
+    if (sortBy === 'name') {
+      return sortOrder === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+    } else if (sortBy === 'price') {
+      return sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
+    } else if (sortBy === 'date') {
+      return sortOrder === 'asc' ? new Date(a.createdAt) - new Date(b.createdAt) : new Date(b.createdAt) - new Date(a.createdAt);
+    }
+    return 0;
+  });
+
+  const handleRemoveProduct = (productId) => {
+    onRemoveProduct(productId);
   };
 
-  const handleRemoveCategory = (categoryToRemove) => {
-    setCategories(categories.filter(cat => cat !== categoryToRemove));
-    if (filter === categoryToRemove) {
-      setFilter('all');
+  const handleSort = (column) => {
+    if (sortBy === column) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(column);
+      setSortOrder('asc');
     }
   };
 
   return (
     <div className="inventory-overview">
-      <div className="inventory-header">
-        <div className="inventory-filters">
-          {categories.map(cat => (
-            <button 
-              key={cat} 
-              onClick={() => setFilter(cat)} 
-              className={filter === cat ? 'active' : ''}
-            >
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
-            </button>
-          ))}
+      <h2>Inventory Overview</h2>
+      <div className="inventory-container">
+        <div className="filter-controls">
+          <button onClick={() => setFilter('all')}>All</button>
+          <button onClick={() => setFilter('shirts')}>Shirts</button>
+          <button onClick={() => setFilter('dress')}>Dress</button>
         </div>
-        <button className="add-category-btn" onClick={() => setIsModalOpen(true)}>
-          +
-        </button>
+        {sortedInventory.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th onClick={() => handleSort('name')}>
+                  Name {sortBy === 'name' && (sortOrder === 'asc' ? '▲' : '▼')}
+                </th>
+                <th>Category</th>
+                <th onClick={() => handleSort('price')}>
+                  Price {sortBy === 'price' && (sortOrder === 'asc' ? '▲' : '▼')}
+                </th>
+                <th onClick={() => handleSort('date')}>
+                  Date Added {sortBy === 'date' && (sortOrder === 'asc' ? '▲' : '▼')}
+                </th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedInventory.map(item => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.category}</td>
+                  <td>${item.price}</td>
+                  <td>{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'N/A'}</td>
+                  <td>
+                    <button onClick={() => handleRemoveProduct(item._id)}>Remove</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No products found.</p>
+        )}
       </div>
-      <table className="inventory-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredInventory.map(item => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.category}</td>
-              <td>{item.stock}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <InventoryCategoryModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        categories={categories}
-        onAddCategory={handleAddCategory}
-        onRemoveCategory={handleRemoveCategory}
-      />
     </div>
   );
 }
