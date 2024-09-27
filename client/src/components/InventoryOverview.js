@@ -15,7 +15,7 @@ function InventoryOverview({ inventory, filter, setFilter, onRemoveProduct }) {
     } else if (sortBy === 'price') {
       return sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
     } else if (sortBy === 'date') {
-      return sortOrder === 'asc' ? new Date(a.createdAt) - new Date(b.createdAt) : new Date(b.createdAt) - new Date(a.createdAt);
+      return sortOrder === 'asc' ? new Date(a.createdAt || Date.now()) - new Date(b.createdAt || Date.now()) : new Date(b.createdAt || Date.now()) - new Date(a.createdAt || Date.now());
     }
     return 0;
   });
@@ -31,6 +31,15 @@ function InventoryOverview({ inventory, filter, setFilter, onRemoveProduct }) {
       setSortBy(column);
       setSortOrder('asc');
     }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString || Date.now());
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   };
 
   return (
@@ -54,7 +63,7 @@ function InventoryOverview({ inventory, filter, setFilter, onRemoveProduct }) {
                   Price {sortBy === 'price' && (sortOrder === 'asc' ? '▲' : '▼')}
                 </th>
                 <th onClick={() => handleSort('date')}>
-                  Date Added {sortBy === 'date' && (sortOrder === 'asc' ? '▲' : '▼')}
+                  Date Added/Updated {sortBy === 'date' && (sortOrder === 'asc' ? '▲' : '▼')}
                 </th>
                 <th>Action</th>
               </tr>
@@ -65,7 +74,7 @@ function InventoryOverview({ inventory, filter, setFilter, onRemoveProduct }) {
                   <td>{item.name}</td>
                   <td>{item.category}</td>
                   <td>${item.price}</td>
-                  <td>{item.createdAt ? new Date(item.createdAt).toLocaleDateString() : 'N/A'}</td>
+                  <td>{formatDate(item.createdAt)}</td>
                   <td>
                     <button onClick={() => handleRemoveProduct(item._id)}>Remove</button>
                   </td>
